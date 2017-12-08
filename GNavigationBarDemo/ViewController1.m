@@ -22,7 +22,7 @@
     
     self.navigationBar.title = @"导航栏中间的text";
     
-    GNavigationItem *close = [GNavItemFactory createImageButton:[UIImage imageNamed:@"close01"] highlightImage:nil target:self selctor:@selector(back)];
+    GNavigationItem *close = [GNavItemFactory createImageButton:[UIImage imageNamed:@"close01"] highlightImage:[UIImage imageNamed:@"close02"] target:self selctor:@selector(back)];
     [self.navigationBar addLeftItem:close];
     
     GNavigationItem *more = [GNavItemFactory createTitleButton:@"按钮" titleColor:[UIColor blackColor] highlightColor:[UIColor redColor] target:self selctor:@selector(more)];

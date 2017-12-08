@@ -25,10 +25,9 @@
     GNavigationItem *close = [GNavItemFactory createImageButton:[UIImage imageNamed:@"close01"] highlightImage:nil target:self selctor:@selector(back)];
     [self.navigationBar addLeftItem:close];
     
-    GNavigationItem *more = [GNavItemFactory createTitleButton:@"按钮1" target:self selctor:@selector(more)];
-   GNavigationItem *more2 = [GNavItemFactory createTitleButton:@"按钮2" target:self selctor:@selector(more)];
-   GNavigationItem *more3 = [GNavItemFactory createTitleButton:@"按钮3" target:self selctor:@selector(more)];
-  self.navigationBar.rightNavigaitonItems = @[more,more2];
+    GNavigationItem *more = [GNavItemFactory createTitleButton:@"按钮" titleColor:[UIColor blackColor] highlightColor:[UIColor redColor] target:self selctor:@selector(more)];
+    GNavigationItem *more2 = [GNavItemFactory createTitleButton:@"按钮2" target:self selctor:@selector(more)];
+    self.navigationBar.rightNavigaitonItems = @[more,more2];
 }
 
 - (void)back

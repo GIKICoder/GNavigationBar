@@ -19,7 +19,7 @@
     [super viewDidLoad];
     [self.navigationController.navigationBar setHidden:YES];
     
-    self.navigationBar.title = @"我是一个中间的按钮";
+    self.navigationBar.title = @"自定义导航栏";
     GNavigationItem *item = [GNavItemFactory createTitleButton:@"按钮" target:self selctor:@selector(click:)];
     [self.navigationBar addRightItem:item];
     

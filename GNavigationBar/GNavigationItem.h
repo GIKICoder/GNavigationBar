@@ -1,6 +1,6 @@
 //
 //  GNavigationItem.h
-//  GIKI
+//  GNavigationBar
 //
 //  Created by GIKI on 2017/4/5.
 //  Copyright © 2017年 GIKI. All rights reserved.

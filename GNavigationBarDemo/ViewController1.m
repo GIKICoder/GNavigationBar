@@ -28,6 +28,7 @@
     GNavigationItem *more = [GNavItemFactory createTitleButton:@"按钮" titleColor:[UIColor blackColor] highlightColor:[UIColor redColor] target:self selctor:@selector(more)];
     GNavigationItem *more2 = [GNavItemFactory createTitleButton:@"按钮2" target:self selctor:@selector(more)];
     self.navigationBar.rightNavigaitonItems = @[more,more2];
+    [self.navigationBar setNavigationEffectWithStyle:(UIBlurEffectStyleLight)];
 }
 
 - (void)back

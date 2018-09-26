@@ -9,64 +9,45 @@
 #import "GNavigationBar.h"
 
 @interface GNavigationBar ()
-
+@property (nonatomic, strong,readwrite) UIImageView * backgroundImageView;
 @property (nonatomic, strong) GNavigationItem * mainNavigationContainer;
 @property (nonatomic, strong) GNavigationItem * leftNavigationContainer;
 @property (nonatomic, strong) GNavigationItem * rightNavigationContainer;
 @property (nonatomic, strong) GNavigationItem * centerNavigationContainer;
 
 @property (nonatomic, strong) UILabel * centerLabel;
-
+@property (nonatomic, strong) UIVisualEffectView *effectView;
 @property (nonatomic, assign) BOOL  animating;
-
+@property (nonatomic, assign) BOOL  customBar;
 @end
 
 @implementation GNavigationBar
 
-+ (instancetype)initNavigationBar
++ (instancetype)navigationBar
 {
-    GNavigationBar *navbar = [[GNavigationBar alloc] initWithFrame:CGRectMake(0, 0, G_SCREEN_WIDTH, G_NAV_HEIGHT)];
+    GNavigationBar *navbar = [[GNavigationBar alloc] initWithFrame:CGRectMake(0, 0, G_SCREEN_WIDTH, G_NAV_HEIGHT) customBar:NO];
     return navbar;
 }
+
 #pragma mark -- init Method
 
-- (instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame customBar:(BOOL)customBar
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self doInit];
+        self.customBar = customBar;
+        [self loadUI];
     }
     return self;
 }
 
-- (instancetype)initWithCoder:(NSCoder *)coder
-{
-    self = [super initWithCoder:coder];
-    if (self) {
-        [self doInit];
-    }
-    return self;
-}
-
-/**
- 构造函数
- */
-- (void)doInit
+- (void)loadUI
 {
     [self addSubview:self.backgroundImageView];
     
     [self addSubview:self.mainNavigationContainer.rootView];
     
     [self.mainNavigationContainer layoutFatherContainers];
-    
-    if ([UIDevice currentDevice].systemVersion.floatValue > 7.99f) {
-        UIBlurEffect *effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        UIVisualEffectView *effectV = [[UIVisualEffectView alloc] initWithEffect:effect];
-        [self.backgroundImageView addSubview:effectV];
-        effectV.frame = self.backgroundImageView.frame;
-    } else {
-        self.backgroundImageView.backgroundColor = [UIColor clearColor];
-    }
 }
 
 - (void)dealloc
@@ -78,9 +59,7 @@
     [super layoutSubviews];
     self.backgroundImageView.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
     self.mainNavigationContainer.minSubContainerWidth = [UIScreen mainScreen].bounds.size.width;
-    
 }
-
 
 #pragma mark -- getter Method
 
@@ -89,6 +68,7 @@
     if (!_backgroundImageView) {
         _backgroundImageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
         _backgroundImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        _backgroundImageView.backgroundColor = [UIColor whiteColor];
     }
     return _backgroundImageView;
 }
@@ -100,8 +80,12 @@
         view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         _mainNavigationContainer = [[GNavigationItem alloc] initWithRootView:view];
         _mainNavigationContainer.minSubContainerWidth = [UIScreen mainScreen].bounds.size.width;
-        _mainNavigationContainer.rootView.frame = CGRectMake(0,GStatusBarHeight, G_SCREEN_WIDTH, G_NAV_HEIGHT-GStatusBarHeight);
-        
+        if (self.customBar) {
+            _mainNavigationContainer.rootView.frame = self.bounds;
+        } else {
+            _mainNavigationContainer.rootView.frame = CGRectMake(0,GStatusBarHeight, G_SCREEN_WIDTH, G_NAV_HEIGHT-GStatusBarHeight);
+        }
+
         [_mainNavigationContainer addChild:self.centerNavigationContainer];
         [_mainNavigationContainer addChild:self.rightNavigationContainer];
         [_mainNavigationContainer addChild:self.leftNavigationContainer];
@@ -268,6 +252,18 @@
 - (void)setTitleMode:(NSLineBreakMode)titleMode
 {
     self.centerLabel.lineBreakMode = titleMode;
+}
+
+- (void)setNavigationEffectWithStyle:(UIBlurEffectStyle)style
+{
+    if ([self.backgroundImageView.subviews containsObject:self.effectView]) {
+        [self.effectView removeFromSuperview];
+    }
+    UIBlurEffect *effect = [UIBlurEffect effectWithStyle:style];
+    UIVisualEffectView *effectV = [[UIVisualEffectView alloc] initWithEffect:effect];
+    self.effectView = effectV;
+    [self.backgroundImageView addSubview:effectV];
+    effectV.frame = self.backgroundImageView.bounds;
 }
 
 - (void)setNavigationBarHidden:(BOOL)hidden animated:(BOOL)animated

@@ -18,9 +18,9 @@
     [super viewDidLoad];
     [self.navigationController.navigationBar setHidden:YES];
     
-    self.navigationBar = [GNavigationBar initNavigationBar];
+    self.navigationBar = [GNavigationBar navigationBar];
     [self.view addSubview:self.navigationBar];
-    self.navigationBar.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:249.0/255.0 blue:250.0/255.0 alpha:1];
+//    self.navigationBar.backgroundColor = [UIColor colorWithRed:248.0/255.0 green:249.0/255.0 blue:250.0/255.0 alpha:1];
    
 }
 

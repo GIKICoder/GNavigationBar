@@ -19,7 +19,6 @@
 		2B1F669D1FD949A0004BF8F1 /* GNavigationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F66911FD94906004BF8F1 /* GNavigationButton.m */; };
 		2B1F669E1FD949A3004BF8F1 /* GNavigationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F66931FD94906004BF8F1 /* GNavigationItem.m */; };
 		2B1F669F1FD949A6004BF8F1 /* GNavItemFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F66961FD94906004BF8F1 /* GNavItemFactory.m */; };
-		2B1F66A21FD94A43004BF8F1 /* UIButton+GNavigationButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F66A11FD94A43004BF8F1 /* UIButton+GNavigationButton.m */; };
 		2B1F66A51FD95DC7004BF8F1 /* GBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F66A41FD95DC7004BF8F1 /* GBaseViewController.m */; };
 		2B1F66A81FD96568004BF8F1 /* ViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F66A71FD96568004BF8F1 /* ViewController1.m */; };
 		2B1F66AB1FD9656F004BF8F1 /* ViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B1F66AA1FD9656F004BF8F1 /* ViewController2.m */; };
@@ -68,8 +67,6 @@
 		2B1F66961FD94906004BF8F1 /* GNavItemFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GNavItemFactory.m; sourceTree = "<group>"; };
 		2B1F669A1FD94935004BF8F1 /* GNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GNavigationBar.m; sourceTree = "<group>"; };
 		2B1F669B1FD94935004BF8F1 /* GNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GNavigationBar.h; sourceTree = "<group>"; };
-		2B1F66A01FD94A43004BF8F1 /* UIButton+GNavigationButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIButton+GNavigationButton.h"; sourceTree = "<group>"; };
-		2B1F66A11FD94A43004BF8F1 /* UIButton+GNavigationButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIButton+GNavigationButton.m"; sourceTree = "<group>"; };
 		2B1F66A31FD95DC7004BF8F1 /* GBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GBaseViewController.h; sourceTree = "<group>"; };
 		2B1F66A41FD95DC7004BF8F1 /* GBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GBaseViewController.m; sourceTree = "<group>"; };
 		2B1F66A61FD96568004BF8F1 /* ViewController1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController1.h; sourceTree = "<group>"; };
@@ -176,8 +173,6 @@
 				2B1F66941FD94906004BF8F1 /* GNavigationMacro.h */,
 				2B1F66951FD94906004BF8F1 /* GNavItemFactory.h */,
 				2B1F66961FD94906004BF8F1 /* GNavItemFactory.m */,
-				2B1F66A01FD94A43004BF8F1 /* UIButton+GNavigationButton.h */,
-				2B1F66A11FD94A43004BF8F1 /* UIButton+GNavigationButton.m */,
 			);
 			path = GNavigationBar;
 			sourceTree = SOURCE_ROOT;
@@ -325,7 +320,6 @@
 				2B1F666B1FD9485C004BF8F1 /* main.m in Sources */,
 				2B1F665D1FD9485C004BF8F1 /* AppDelegate.m in Sources */,
 				2B1F669C1FD9499D004BF8F1 /* GNavigationBar.m in Sources */,
-				2B1F66A21FD94A43004BF8F1 /* UIButton+GNavigationButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,7 +483,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RCF9CM736N;
+				DEVELOPMENT_TEAM = LSND274XQ9;
 				INFOPLIST_FILE = GNavigationBarDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GIKI.GNavigationBarDemo;
@@ -503,7 +497,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RCF9CM736N;
+				DEVELOPMENT_TEAM = LSND274XQ9;
 				INFOPLIST_FILE = GNavigationBarDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = GIKI.GNavigationBarDemo;

@@ -36,7 +36,8 @@
 {
     [super viewDidLayoutSubviews];
     [self.view bringSubviewToFront:self.navigationBar];
-    _tableView.frame = CGRectMake(0, CGRectGetMaxY(self.navigationBar.frame), G_SCREEN_WIDTH, G_SCREEN_HEIGHT-CGRectGetMaxY(self.navigationBar.frame));
+    _tableView.frame = CGRectMake(0, 0, G_SCREEN_WIDTH, G_SCREEN_HEIGHT);
+    _tableView.contentInset = UIEdgeInsetsMake(CGRectGetMaxY(self.navigationBar.frame)-22, 0, 0, 0);
 //    _tableView.contentInset = UIEdgeInsetsMake(CGRectGetMaxY(self.navigationBar.frame), 0, 0, 0);
 //    _tableView.contentOffset = CGPointMake(0, -CGRectGetMaxY(self.navigationBar.frame));
 }

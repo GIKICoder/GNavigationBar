@@ -8,23 +8,39 @@
 
 #import "GNavigationButton.h"
 
+@interface GNavigationButton ()
+@property (nonatomic, assign) BOOL  adjustHitEdgeIntsets;
+@property (nonatomic, assign) UIEdgeInsets  hitEdgeIntsets;
+@end
+
 @implementation GNavigationButton
 
-- (void)setTitle:(NSString*)title forState:(UIControlState)state
+- (void)enlargeHitWithEdges:(UIEdgeInsets)edgeIntsets
 {
-    [super setTitle:title forState:state];
-    
-    //根据设置的文字字体大小来计算文本的尺寸
-    
-    CGSize titleSize = [title sizeWithFont:self.titleLabel.font];
-    
-    //按钮的宽度
-    CGRect rect = self.frame;
-    
-    rect.size.width= titleSize.width;
-    rect.size.height = 23;
-    self.frame = rect;
+    self.hitEdgeIntsets = edgeIntsets;
+    self.adjustHitEdgeIntsets = YES;
 }
 
+- (CGRect)newHitRect
+{
+    if (self.adjustHitEdgeIntsets) {
+        UIEdgeInsets edgeIntset = self.hitEdgeIntsets;
+        return CGRectMake(self.bounds.origin.x - edgeIntset.left,
+                          self.bounds.origin.y - edgeIntset.top,
+                          self.bounds.size.width + edgeIntset.left + edgeIntset.right,
+                          self.bounds.size.height + edgeIntset.top + edgeIntset.bottom);
+    } else {
+        return self.bounds;
+    }
+}
+
+-(BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
+    CGRect rect = [self newHitRect];
+    if (CGRectEqualToRect(rect, self.bounds)) {
+        return [super pointInside:point withEvent:event];
+    }
+    return CGRectContainsPoint(rect, point) ? YES : NO;
+}
 
 @end

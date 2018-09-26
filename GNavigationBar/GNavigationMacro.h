@@ -58,14 +58,17 @@
 
 #define G_SCREEN_WIDTH        ([[UIScreen mainScreen] bounds].size.width)
 #define G_SCREEN_HEIGHT       ([[UIScreen mainScreen] bounds].size.height)
-#define SCREEN_MAX_LENGTH   (MAX(G_SCREEN_WIDTH, G_SCREEN_HEIGHT))
-#define SCREEN_MIN_LENGTH   (MIN(G_SCREEN_WIDTH, G_SCREEN_HEIGHT))
-#define G_IS_IPHONE_X         ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) && SCREEN_MAX_LENGTH == 812.0)
+#define G_SCREEN_MAX_LENGTH   (MAX(G_SCREEN_WIDTH, G_SCREEN_HEIGHT))
+#define G_SCREEN_MIN_LENGTH   (MIN(G_SCREEN_WIDTH, G_SCREEN_HEIGHT))
+#define G_IS_IPHONE_X         ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) && G_SCREEN_MAX_LENGTH == 812.0)
+#define G_IS_IPHONE_XR        ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) && G_SCREEN_MAX_LENGTH == 896.0 && [[UIScreen mainScreen] scale] == 2.0)
+#define G_IS_IPHONE_MAX       ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) && G_SCREEN_MAX_LENGTH == 896.0 && [[UIScreen mainScreen] scale] == 3.0)
+#define G_IS_IPHONE_FOREHEAD  (G_IS_IPHONE_X || G_IS_IPHONE_XR || G_IS_IPHONE_MAX)
 
 /// 导航栏高度 44
 #define GNavBarContentHeight (44.0f)
 /// 隐藏状态栏的情况下 也有值
-#define GStatusBarHeight (G_IS_IPHONE_X ? (44.f) :(20.0f))
+#define GStatusBarHeight (G_IS_IPHONE_FOREHEAD ? (44.f) :(20.0f))
 
 #define G_NAV_HEIGHT (GNavBarContentHeight+GStatusBarHeight)
 
@@ -76,16 +79,6 @@ typedef NS_ENUM(NSUInteger, GNavItemAttachStyle) {
     GNavItemAttachStyle_right,
 };
 
-/**
- 导航item 类型
-
- - GNavContainerStyle_Common: 普通按钮
- - GNavContainerStyle_Space: 占位按钮
- */
-typedef NS_ENUM(NSUInteger, GNavContainerStyle) {
-    GNavContainerStyle_Common,
-    GNavContainerStyle_Space,
-};
 
 #define GNAVColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
 #define GNAVColorRGBA(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a]

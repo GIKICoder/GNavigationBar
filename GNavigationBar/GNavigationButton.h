@@ -10,4 +10,6 @@
 
 @interface GNavigationButton : UIButton
 
+- (void)enlargeHitWithEdges:(UIEdgeInsets)edgeIntsets;
+
 @end

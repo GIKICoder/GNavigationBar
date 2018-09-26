@@ -10,11 +10,8 @@
 #import "GNavigationMacro.h"
 #import "GNavigationButton.h"
 #import "GNavigationItem.h"
-#import "UIButton+GNavigationButton.h"
-
 
 @implementation GNavItemFactory
-
 
 + (GNavigationItem *)createImageButton:(UIImage*)image highlightImage:(UIImage*)highlightImage target:(id)target selctor:(SEL)selctor
 {
@@ -30,11 +27,9 @@
     if (G_NAVI_DEBUG) {
         btn.backgroundColor  = GNAVRandomColor;
     }
-    [btn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
+    [btn enlargeHitWithEdges:UIEdgeInsetsMake(10, 10, 10, 10)];
     GNavigationItem *item = [[GNavigationItem alloc] initWithRootView:btn];
-    
     return item;
-
 }
 
 + (GNavigationItem *)createTitleButton:(NSString*)title target:(id)target selctor:(SEL)selctor
@@ -51,17 +46,19 @@
 + (GNavigationItem *)createTitleButton:(NSString*)title titleColor:(UIColor*)color highlightColor:(UIColor*)highlightColor font:(UIFont*)font target:(id)target selctor:(SEL)selctor
 {
     GNavigationButton *btn = [GNavigationButton buttonWithType:UIButtonTypeCustom];
-    [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:color forState:UIControlStateNormal];
     [btn setTitleColor:highlightColor forState:UIControlStateHighlighted];
     btn.titleLabel.font = font;
+    [btn setTitle:title forState:UIControlStateNormal];
     [btn addTarget:target action:selctor forControlEvents:UIControlEventTouchUpInside];
     if (G_NAVI_DEBUG) {
         btn.backgroundColor  = GNAVRandomColor;
     }
-    [btn setEnlargeEdgeWithTop:10 right:10 bottom:10 left:10];
+    CGSize size = CGSizeMake(MAXFLOAT, 20.0f);
+    CGSize buttonSize = [title boundingRectWithSize:size                          options:NSStringDrawingTruncatesLastVisibleLine  | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading                       attributes:@{ NSFontAttributeName:font}                                               context:nil].size;
+    btn.frame = CGRectMake(0, 0, buttonSize.width, G_NAVI_ITEM_SIZE.height);
+    [btn enlargeHitWithEdges:UIEdgeInsetsMake(10, 10, 10, 10)];
     GNavigationItem *item = [[GNavigationItem alloc] initWithRootView:btn];
-    
     return item;
 }
 
@@ -71,7 +68,6 @@
     item.subViewFrameAdjustChange = NO;
     return item;
 }
-
 
 - (UIImage*)drawCloseImageSize:(CGSize)size lineWidth:(CGFloat)lineWidth tintColor:(UIColor *)tintColor
 {

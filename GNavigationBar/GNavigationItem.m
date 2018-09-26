@@ -23,7 +23,6 @@
     _childern = [NSMutableArray array];
     //锚点
     _minSubContainerWidth = 0;
-    
     _superNavItemNode = nil;
 }
 
